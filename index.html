@@ -11,14 +11,22 @@
 </head>
 <body>
 
-    <div class="chat-container">
+    <div id="cover-page">
+        <div class="door" id="left-door"></div>
+        <div class="door" id="right-door"></div>
+        <div class="cover-content">
+            <h1>LoopChat 🔄</h1>
+            <button id="enter-chat-btn">Enter Chat</button>
+        </div>
+    </div>
+
+    <div class="chat-container" id="chat-app">
         <header class="chat-header">
             <h1>LoopChat 🔄</h1>
             <p>Talk to yourself in a loop.</p>
         </header>
 
         <main class="chat-window" id="chat-window">
-            <!-- Initial system message -->
             <div class="message past-self-message">
                 <div class="meta">System</div>
                 <div class="message-bubble">
@@ -29,6 +37,7 @@
 
         <footer class="chat-form-container">
             <form class="chat-form" id="chat-form">
+                <button type="button" class="ai-button" id="suggestion-btn" title="What should I think about?">✨</button>
                 <input type="text" id="message-input" placeholder="Chat with your past self..." autocomplete="off" required>
                 <button type="submit" id="send-button" aria-label="Send Message">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
