@@ -42,6 +42,8 @@ https://github.com/muhammedma-2006/memory_returner/blob/main/screenshot/cover%20
 
 https://github.com/muhammedma-2006/memory_returner/blob/main/screenshot/content%20page.jpg
 
+https://github.com/muhammedma-2006/memory_returner/blob/main/screenshot/AI%20input.jpg
+
 **Caption:**
 
 This diagram illustrates the complete workflow of the LoopChat application, which operates entirely on the client-side for this demonstration.
