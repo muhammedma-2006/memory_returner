@@ -44,18 +44,21 @@ https://github.com/muhammedma-2006/memory_returner/blob/main/screenshot/content%
 
 https://github.com/muhammedma-2006/memory_returner/blob/main/screenshot/AI%20input.jpg
 
-**Caption:**
+### Workflow
 
-This diagram illustrates the complete workflow of the LoopChat application, which operates entirely on the client-side for this demonstration.
+This diagram illustrates the complete client-side workflow of the LoopChat application.
 
-1.  **User Interaction**: The user interacts with the UI built with **HTML and CSS**. All actions, like sending a message or clicking a button, are captured by the **Frontend JavaScript**.
-2.  **The Loop**: When a user sends a message, the JavaScript displays it immediately and simulates the 5-minute delay using a `setTimeout` function. After the delay, the same message is displayed back to the user as if it's from their "past self."
-3.  **Gemini AI Features**:
-    * **Suggestion**: Clicking the "✨" button sends a predefined prompt to the **Gemini Text API** to generate a thought-provoking question.
-    * **Reflection & Summary**: Clicking "Reflect" on a message or "Summarize" in the header sends the relevant conversation text to the **Gemini Text API** for analysis, mood detection, and actionable insights.
-    * **Text-to-Speech (TTS)**: Clicking the "Listen" button on an AI-generated message sends the text content to the **Gemini TTS API**, which returns an audio file that is played directly in the browser.
+#### Core Loop
+When a user sends a message, the JavaScript immediately displays it and simulates a 5-minute delay using `setTimeout`. After the delay, the message is redisplayed to the user, creating a conversational loop with their "past self."
 
-All API communication happens securely from the client to the Google Cloud backend, with the results rendered dynamically back into the chat window.
+#### Gemini AI Integration
+The application leverages the Gemini API for several key features:
+
+* **AI Suggestions**: Clicking the "✨" button sends a prompt to the Gemini Text API to generate a thought-provoking question for the user.
+* **AI Reflection & Summarization**: The "Reflect" and "Summarize" features send the conversation history to the Gemini Text API for analysis. The API returns insightful questions, mood analysis, or a full summary with actionable steps.
+* **Text-to-Speech (TTS)**: The "Listen" button on AI-generated messages uses the Gemini TTS API to convert the text into speech, which is then played back in the browser.
+
+All API communication is handled securely between the client and the Google Cloud backend, with results rendered dynamically in the chat interface.
 
 
 Project Demo
