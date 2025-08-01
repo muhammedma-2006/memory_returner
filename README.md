@@ -38,28 +38,23 @@ Project Documentation
 For Software:
 
 Screenshots (Add at least 3)
-./screenshot/cover page.jpg
+https://github.com/muhammedma-2006/memory_returner/blob/main/screenshot/cover%20page.jpg
 
-![Screenshot2](Add screenshot 2 here with proper name) Add caption explaining what this shows
+https://github.com/muhammedma-2006/memory_returner/blob/main/screenshot/content%20page.jpg
 
-![Screenshot3](Add screenshot 3 here with proper name) Add caption explaining what this shows
+**Caption:**
 
-Diagrams
-![Workflow](Add your workflow/architecture diagram here) Add caption explaining your workflow
+This diagram illustrates the complete workflow of the LoopChat application, which operates entirely on the client-side for this demonstration.
 
-For Hardware:
+1.  **User Interaction**: The user interacts with the UI built with **HTML and CSS**. All actions, like sending a message or clicking a button, are captured by the **Frontend JavaScript**.
+2.  **The Loop**: When a user sends a message, the JavaScript displays it immediately and simulates the 5-minute delay using a `setTimeout` function. After the delay, the same message is displayed back to the user as if it's from their "past self."
+3.  **Gemini AI Features**:
+    * **Suggestion**: Clicking the "✨" button sends a predefined prompt to the **Gemini Text API** to generate a thought-provoking question.
+    * **Reflection & Summary**: Clicking "Reflect" on a message or "Summarize" in the header sends the relevant conversation text to the **Gemini Text API** for analysis, mood detection, and actionable insights.
+    * **Text-to-Speech (TTS)**: Clicking the "Listen" button on an AI-generated message sends the text content to the **Gemini TTS API**, which returns an audio file that is played directly in the browser.
 
-Schematic & Circuit
-![Circuit](Add your circuit diagram here) Add caption explaining connections
+All API communication happens securely from the client to the Google Cloud backend, with the results rendered dynamically back into the chat window.
 
-![Schematic](Add your schematic diagram here) Add caption explaining the schematic
-
-Build Photos
-![Components](Add photo of your components here) List out all components shown
-
-![Build](Add photos of build process here) Explain the build steps
-
-![Final](Add photo of final product here) Explain the final build
 
 Project Demo
 Video
