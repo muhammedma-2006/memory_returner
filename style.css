@@ -1,6 +1,6 @@
-/* CSS Custom Properties for easy theming */
+ /* CSS Custom Properties for easy theming */
         :root {
-            --background: #f4f7f9;
+            --background: #eef2f5;
             --surface: #ffffff;
             --primary: #3b82f6;
             --primary-light: #dbeafe;
@@ -11,7 +11,7 @@
             --user-bubble-text: #ffffff;
             --past-self-bubble-bg: #e5e7eb;
             --past-self-bubble-text: var(--text-dark);
-            --gemini-bubble-bg: #fefce8; /* Light yellow */
+            --gemini-bubble-bg: #fefce8;
             --gemini-bubble-text: #a16207;
             --gemini-bubble-border: #fde68a;
         }
@@ -32,8 +32,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 1rem;
-            overflow: hidden; /* Prevent scrollbars */
-            perspective: 1500px; /* Add 3D perspective for the door animation */
+            overflow: hidden;
         }
 
         /* Cover Page Styles */
@@ -44,47 +43,30 @@
             width: 100%;
             height: 100%;
             z-index: 10;
-            transition: visibility 1.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(238, 242, 245, 0.8);
+            backdrop-filter: blur(5px);
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
         }
         
         #cover-page.hidden {
             visibility: hidden;
+            opacity: 0;
         }
 
-        .door {
-            position: absolute;
-            top: 0;
-            width: 50.1%; /* Slight overlap to prevent gap */
-            height: 100%;
-            background-color: var(--background);
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-            z-index: 2;
-        }
-
-        #left-door {
-            left: 0;
-            transform-origin: left;
-        }
-
-        #right-door {
-            right: 0;
-            transform-origin: right;
+        .cover-card {
+            background: var(--surface);
+            padding: 4rem 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease-in-out;
+            min-width: 300px;
         }
         
-        .cover-content {
-            position: relative;
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            transition: opacity 0.5s ease-out;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .cover-content h1 {
+        .cover-card h1 {
             font-size: 3rem;
             font-weight: 700;
             color: var(--primary);
@@ -108,19 +90,10 @@
             transform: translateY(-2px);
         }
 
-        /* Animation Trigger State */
-        #cover-page.opening .cover-content {
+        #cover-page.opening .cover-card {
+            transform: scale(0.9);
             opacity: 0;
         }
-
-        #cover-page.opening #left-door {
-            transform: rotateY(-130deg);
-        }
-
-        #cover-page.opening #right-door {
-            transform: rotateY(130deg);
-        }
-
 
         /* Main Chat Application Container */
         .chat-container {
@@ -136,7 +109,7 @@
             overflow: hidden;
             transform: scale(0.95);
             opacity: 0;
-            transition: transform 0.5s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.3s;
+            transition: transform 0.5s ease-in-out 0.2s, opacity 0.5s ease-in-out 0.2s;
         }
 
         .chat-container.visible {
@@ -149,6 +122,7 @@
             padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border-color);
             text-align: center;
+            position: relative;
         }
 
         .chat-header h1 {
@@ -161,6 +135,29 @@
             font-size: 0.875rem;
             color: var(--text-light);
             margin-top: 0.25rem;
+        }
+        
+        #summarize-btn {
+            position: absolute;
+            top: 50%;
+            right: 1.5rem;
+            transform: translateY(-50%);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        #summarize-btn:hover {
+            background-color: #c7d2fe;
+        }
+        #summarize-btn:disabled {
+            cursor: not-allowed;
+            background-color: var(--border-color);
         }
 
         /* Messages Window */
@@ -230,12 +227,27 @@
         .gemini-message {
             align-self: flex-start;
             align-items: flex-start;
+            width: 85%;
+            max-width: 85%;
         }
         .gemini-message .message-bubble {
             background-color: var(--gemini-bubble-bg);
             color: var(--gemini-bubble-text);
             border: 1px solid var(--gemini-bubble-border);
             border-bottom-left-radius: 0.5rem;
+        }
+        .gemini-mood, .gemini-actionable-step {
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--gemini-bubble-border);
+        }
+        .gemini-actionable-step {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--gemini-bubble-border);
+            border-bottom: none;
         }
         
         /* Message Input Form */
@@ -308,8 +320,13 @@
             height: 20px;
         }
 
-        .reflect-button {
+        .message-actions {
             margin-top: 0.75rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .reflect-button, .listen-button {
             padding: 0.25rem 0.75rem;
             font-size: 0.75rem;
             font-weight: 500;
@@ -318,8 +335,11 @@
             border-radius: 999px;
             cursor: pointer;
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
         }
-        .reflect-button:hover {
+        .reflect-button:hover, .listen-button:hover {
             background-color: rgba(0,0,0,0.1);
             border-color: rgba(0,0,0,0.2);
         }
@@ -331,6 +351,8 @@
             width: 16px;
             height: 16px;
             animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         @keyframes spin {

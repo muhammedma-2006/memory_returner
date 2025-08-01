@@ -12,9 +12,7 @@
 <body>
 
     <div id="cover-page">
-        <div class="door" id="left-door"></div>
-        <div class="door" id="right-door"></div>
-        <div class="cover-content">
+        <div class="cover-card">
             <h1>LoopChat 🔄</h1>
             <button id="enter-chat-btn">Enter Chat</button>
         </div>
@@ -24,13 +22,14 @@
         <header class="chat-header">
             <h1>LoopChat 🔄</h1>
             <p>Talk to yourself in a loop.</p>
+            <button id="summarize-btn" title="Summarize the conversation">✨ Summarize</button>
         </header>
 
         <main class="chat-window" id="chat-window">
-            <div class="message past-self-message">
+            <div class="message past-self-message" data-author="System">
                 <div class="meta">System</div>
                 <div class="message-bubble">
-                    Welcome! Send a message. It will be echoed back in 5 minutes (5 seconds for this demo).
+                    <span class="message-text">Welcome! Send a message. It will be echoed back in 5 minutes (5 seconds for this demo).</span>
                 </div>
             </div>
         </main>
@@ -46,10 +45,11 @@
                 </button>
             </form>
         </footer>
+        <audio id="tts-audio-player" style="display: none;"></audio>
     </div>
 
     <script src="./script.js">
-       
+        
     </script>
 </body>
 </html>
